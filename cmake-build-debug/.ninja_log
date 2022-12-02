@@ -1,0 +1,13 @@
+# ninja log v5
+2	1230	6916746518130977	CMakeFiles/thefinal.dir/main.cpp.obj	a53fd52446712700
+7	319	6916746508947803	CMakeFiles/thefinal.dir/checkboard.cpp.obj	1c8ac0d818cf5b42
+1230	1622	6916746521998324	thefinal.exe	e0b2e2f8d3967a1d
+5	384	6916746509660000	CMakeFiles/thefinal.dir/win_checker.cpp.obj	c08b2974256a8699
+2	809	6915840971654457	CMakeFiles/test.dir/test.cpp.obj	23a1c70e32aea2b3
+1	360	6915901671132237	test.exe	c88fc31f9f5349ce
+8	1059	6916729007675855	CMakeFiles/thefinal.dir/pages.cpp.obj	59091a92c2d99ae8
+3	47	6915901905650932	CMakeFiles/thefinal.dir/test.cpp.obj	fa3e36b5a4f9a63c
+5	879	6916633227626293	CMakeFiles/thefinal.dir/easyxfunctions.cpp.obj	4bcf7dea0cf831b4
+0	1560	6915904019269438	CMakeFiles/main.dir/main.cpp.obj	36b135278ce6b631
+1560	1936	6915904023007929	main.exe	5f3b7f3e9a74dd3e
+2	237	6916630943086907	CMakeFiles/thefinal.dir/xytranslator.cpp.obj	8624051c556e5c5b
