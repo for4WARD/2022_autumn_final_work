@@ -26,6 +26,7 @@ int main()
     int size=19;//棋盘大小为19
     ChessBoard chessBoard(size);
     Algorithm algorithm;
+    FILE *reviewfp;
     int turns=0;
     int mode= 0;
 
@@ -59,7 +60,7 @@ int main()
                             goto TAG1;
                         }
                         else {
-                            goto EXIT;
+                            exit(0);
                         }
 
                     }
@@ -74,7 +75,6 @@ int main()
     //PVP模式选择
 
     page_page.page_switch();
-
     while(TRUE){
         if(peekmessage(&msg,EM_MOUSE)){
 
@@ -187,11 +187,60 @@ int main()
                     filedealer.file_add_rep();
                     filedealer.file_all_add(repx,repy,id);
                     filedealer.file_now_in(repx,repy,id);
+                    if(id==WHITE) id=BLACK;
+                    else id=WHITE;
                 }
             }
         }
     }
 REVIEW:
+    page_page.page_review();
+    Sleep(1000);
+    int helpx=0,helpy=0,helpid=0,helpcheck=0;
+    reviewfp=freopen("../memory/lastgame.out","r+",stdin);
+    while(1){
+        Sleep(10);
+        if(peekmessage(&msg,EM_MOUSE)){
+            if (msg.message == WM_LBUTTONDOWN) {
+                if (cin>>helpcheck) {
+                    if (helpcheck != 10000) {
+                        printf("x:%d\ty:%d\tid:%d", helpx, helpy, helpid);
+                        helpx = helpcheck;
+                        cin >> helpy >> helpid;
+                    }
+                    int mx = msg.x, my = msg.y;
+                    if (mx >= 830 && mx <= 1000 && my >= 700 && my <= 800) {
+                        int temp = easyxfunctionmain.change2("zjx的五子棋", "是否返回主页并重开？", "提示");
+                        if (temp == 1) {
+                            msg.x = 0, msg.y = 0;
+                            goto TAG1;
+                        } else {
+                            msg.x = 0, msg.y = 0;
+                            continue;
+                        }
+                    } else if (mx >= 830 && mx <= 1000 && my >= 500 && my <= 600) {
+                        if (helpcheck == 10000) {
+                            helpcheck = 0;
+                            easyxfunctionmain.BrownPawn(25 + 41 * (helpx - 1), 24 + 41 * (helpy - 1));
+                        } else {
+                            if (helpid == BLACK) {
+                                easyxfunctionmain.BlackPawn(25 + 41 * (helpx - 1), 24 + 41 * (helpy - 1));
+                            } else {
+                                easyxfunctionmain.WhitePawn(25 + 41 * (helpx - 1), 24 + 41 * (helpy - 1));
+                            }
+                        }
+                    }
+                }
+                else{
+                    easyxfunctionmain.change1("zjx的五子棋","复盘结束，返回主菜单","提示");
+                    break;
+                }
+            }
+
+        }
+    }
+    fclose(reviewfp);
+    goto TAG1;
 
 
     EXIT:

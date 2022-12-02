@@ -15,6 +15,7 @@ public:
     void page1();
     void pageboard();
     void page_switch();
+    void page_review();
 };
 
 

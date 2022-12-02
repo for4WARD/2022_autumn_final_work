@@ -36,3 +36,13 @@ void pages::page_switch() {
     easyxfunctionss.Button("主菜单",300,850,125,400,80);
 
 }
+void pages::page_review() {
+    easyxfunctions easyxfunctions2;
+    setbkcolor(RGB(255,255,255));
+    cleardevice();
+    easyxfunctions2.picture_loader(0,0,1000,1000,"../materials/backgropund1.jpg");
+    easyxfunctions2.picture_loader(0,0,800,800,"../materials/thehboard.png");
+    easyxfunctions2.Button("五子棋",830,80,100,170,50);
+    easyxfunctions2.Button("下一步",830,500,100,170,50);
+    easyxfunctions2.Button("remake",830,700,100,170,50);
+}
