@@ -14,6 +14,9 @@ class filedealer {
 public:
     void file_now_in(int x,int y,int id);
     void file_all_add(int x,int y,int id);
+    void file_add_line();
+    void file_add_rep();
+
 };
 
 

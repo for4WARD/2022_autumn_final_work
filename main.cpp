@@ -28,8 +28,8 @@ int main()
     Algorithm algorithm;
     int turns=0;
     int mode= 0;
-    TAG1:
 
+    TAG1:
     page_page.page1();
     while(TRUE){
         Sleep(5);
@@ -39,6 +39,8 @@ int main()
                     //pvp
                 {
                     if (msg.x >= 600 && msg.x <= 900 && msg.y >= 600 && msg.y <= 700) {
+                        FILE *fp= fopen("../memory/lastgame.out","w");
+                        fclose(fp);
                         goto SWITCH;
                     }
                     //pve
@@ -46,6 +48,8 @@ int main()
                         easyxfunctionmain.change1("zjx的五子棋",
                                                   "由于练习时长未到两年半，所以只做了无禁手的AI，祝您玩得愉快", "提示");
                         mode=PVE;
+                        FILE *fp= fopen("../memory/lastgame.out","w");
+                        fclose(fp);
                         goto TAGBOARD;//棋盘
                     }
                     if (msg.x >= 100 && msg.x <= 300 && msg.y >= 900 && msg.y <= 1000) {
@@ -53,7 +57,8 @@ int main()
                         if (flag == 0) {
                             msg.x = 0, msg.y = 0;
                             goto TAG1;
-                        } else {
+                        }
+                        else {
                             goto EXIT;
                         }
 
@@ -105,9 +110,9 @@ int main()
     page_page.pageboard();
     chessBoard.Reinitialize();
     id=BLACK;
+
     while(TRUE){
         Sleep(10);
-
         if(peekmessage(&msg,EM_MOUSE)){
             if(id==BLACK){
                 easyxfunctionmain.picture_loader(830,300,160,100,"../materials/Snipaste_2022-12-02_16-46-18.png");
@@ -132,6 +137,8 @@ int main()
                     int in_x=locationtranslator.translator(mx);
                     int in_y=locationtranslator.translator(my);
                     chessBoard.PlaceNode(in_x,in_y,id);
+                    filedealer.file_now_in(in_x,in_y,id);
+                    filedealer.file_all_add(in_x,in_y,id);
                     if (id == BLACK) {
                             easyxfunctionmain.BlackPawn(25 + 41 * (in_x - 1), 24 + 41 * (in_y - 1));
 
@@ -149,17 +156,37 @@ int main()
                         if (algorithm.Judeger(chessBoard, size, mode) == BLACK)
                             /////////////
                         {
+                            filedealer.file_add_line();
                             int temp = easyxfunctionmain.change2("zjx的五子棋", "黑棋胜利!是否复盘？", "提示");
                             if (temp == 0) {
                                 goto TAG1;
-                            } else {
+                            }
+                            else {
                                 goto REVIEW;
                             }
                         }
-                        if (algorithm.Judeger(chessBoard, size, mode) == WHITE) { cout << "WHITE WINS" << endl; }
+                        if (algorithm.Judeger(chessBoard, size, mode) == WHITE) {
+                            filedealer.file_add_line();
+                            int temp = easyxfunctionmain.change2("zjx的五子棋", "白棋胜利!是否复盘？", "提示");
+                            if (temp == 0) {
+                                goto TAG1;
+                            }
+                            else {
+                                goto REVIEW;
+                            }
+                        }
 
 
 
+                }
+                else if(mx>=830&&mx<=1000&&my>=500&&my<=600){
+                    int repx=chessBoard.ShowRecentStep().getLocationX();
+                    int repy=chessBoard.ShowRecentStep().getLocationY();
+                    easyxfunctionmain.BrownPawn(25+41*(repx-1),24+41*(repy-1));
+                    chessBoard.RepentStep();
+                    filedealer.file_add_rep();
+                    filedealer.file_all_add(repx,repy,id);
+                    filedealer.file_now_in(repx,repy,id);
                 }
             }
         }

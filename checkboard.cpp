@@ -104,6 +104,7 @@ public:
         if(!route.empty()){
             ChessNode temp=route.top();
             board[temp.getLocationX()][temp.getLocationY()].setPlayerId(-1);
+            route.pop();
         }
     }
     void Display(){

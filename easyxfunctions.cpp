@@ -32,6 +32,10 @@ void easyxfunctions:: change1(const char *title, const char *saysomething, const
         setfillcolor(RGB(34, 34, 34));
         solidcircle(x, y, 15);
     }
+void easyxfunctions::BrownPawn(int x, int y){
+    setfillcolor(BROWN);
+    solidcircle(x, y, 15);
+}
 
     void easyxfunctions::WhitePawn(int x, int y) {
         setfillcolor(RGB(246, 246, 246));

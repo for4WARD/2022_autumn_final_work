@@ -22,7 +22,7 @@ public:
     void change1(const char *title, const char *saysomething, const char *hint);
 
     void BlackPawn(int x, int y);
-
+    void BrownPawn(int x, int y);
     void WhitePawn(int x, int y);
 
     void Button(const char *message, int x_location, int y_location, int height, int width,int charheight);
