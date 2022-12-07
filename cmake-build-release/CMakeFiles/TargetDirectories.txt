@@ -1,0 +1,5 @@
+F:/cpp_project/thefinal/cmake-build-release/CMakeFiles/thefinal.dir
+F:/cpp_project/thefinal/cmake-build-release/CMakeFiles/win_checker.dir
+F:/cpp_project/thefinal/cmake-build-release/CMakeFiles/main.dir
+F:/cpp_project/thefinal/cmake-build-release/CMakeFiles/edit_cache.dir
+F:/cpp_project/thefinal/cmake-build-release/CMakeFiles/rebuild_cache.dir

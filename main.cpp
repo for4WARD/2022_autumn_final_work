@@ -226,9 +226,9 @@ int main()
                 }
                 //这里列是x 行是y
                 chessBoard.PlaceNode(decision_x, decision_y, id);
-                filedealer.file_now_in(decision_y, decision_x, id);
-                filedealer.file_all_add(decision_y, decision_x, id);
-                cout<<"x:"<<decision_x<<"\ty:"<<decision_y<<endl;
+                filedealer.file_now_in(decision_x, decision_y, id);
+                filedealer.file_all_add(decision_x, decision_y, id);
+//                cout<<"x:"<<decision_x<<"\ty:"<<decision_y<<endl;
                 easyxfunctionmain.BlackPawn(25 + 41 * (decision_y - 1), 24 + 41 * (decision_x - 1));
                 id = WHITE;
             }
@@ -253,20 +253,20 @@ int main()
                     filedealer.file_now_in(in_x, in_y, id);
                     filedealer.file_all_add(in_x, in_y, id);
                     easyxfunctionmain.WhitePawn(25 + 41 * (in_x - 1), 24 + 41 * (in_y - 1));
-                    chessBoard.Display();
-                    cout<<"\n\n\n\n\n\n\n\n\n"<<endl;
+
+
                     id = BLACK;
                 }
                 else if(mx>=830&&mx<=1000&&my>=500&&my<=600){
-                    int repx=chessBoard.ShowRecentStep().getLocationX();
-                    int repy=chessBoard.ShowRecentStep().getLocationY();
+                    int repy=chessBoard.ShowRecentStep().getLocationX();
+                    int repx=chessBoard.ShowRecentStep().getLocationY();
                     easyxfunctionmain.BrownPawn(25+41*(repx-1),24+41*(repy-1));
                     chessBoard.RepentStep();
                     filedealer.file_add_rep();
                     filedealer.file_all_add(repx,repy,BROWN);
                     filedealer.file_now_in(repx,repy,BROWN);
-                    repx=chessBoard.ShowRecentStep().getLocationX();
-                    repy=chessBoard.ShowRecentStep().getLocationY();
+                    repy=chessBoard.ShowRecentStep().getLocationX();
+                    repx=chessBoard.ShowRecentStep().getLocationY();
                     easyxfunctionmain.BrownPawn(25+41*(repx-1),24+41*(repy-1));
                     chessBoard.RepentStep();
                     filedealer.file_add_rep();

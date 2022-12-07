@@ -75,7 +75,7 @@ int AI::mark_giver(ChessNode ** chesses,int size,int x,int y){
         if(str[2*i+1].length()>=4)r4+=(r3+str[2*i+1][3]);
         //定义 进攻
         if(algorithm.bkmp(l4,"ffff")||algorithm.bkmp(r4,"ffff")||(l2+r2=="ffff")||(l1+r3=="ffff")||(l3+r1=="ffff")) {
-            cout<<"check4:b"<<x<<"\t"<<y<<endl;
+//            cout<<"check4:b"<<x<<"\t"<<y<<endl;
             return INT32_MAX;//0:拿下！
         }
         if((l4=="fff?"&&r1=="?")||(r4=="fff?"&&l1=="?")||(l3=="ff?"&&r2=="f?")||(r3=="ff?"&&l2=="f?")){
@@ -92,13 +92,16 @@ int AI::mark_giver(ChessNode ** chesses,int size,int x,int y){
         {
             container[3]+=1;
         }
+        if((l3=="fff"&&r1!="n")||r3=="fff"&&l1!="n"){
+            container[4]+=1;
+        }
         //定义 防守
         if(algorithm.bkmp(l4,"nnnn")||algorithm.bkmp(r4,"nnnn")||(l2+r2=="nnnn")||(l1+r3=="nnnn")||(l3+r1=="nnnn")) {
-            cout<<"check4:"<<x<<"\t"<<y<<endl;
+//            cout<<"check4:"<<x<<"\t"<<y<<endl;
             return INT32_MAX-1;//4:不堵就寄
         }
         if((l4=="nnn?")||(r4=="nnn?")||(l3=="nn?"&&r1=="n")||(r3=="nn?"&&l1=="n")){
-            cout<<"check3:"<<x<<"\t"<<y<<endl;
+//            cout<<"check3:"<<x<<"\t"<<y<<endl;
             return INT32_MAX-3;//不堵就寄
         }
         if((l3=="nnn"&&r1=="?")||(r4=="nnn?")||(l3=="nn?"&&r2=="n")||(r3=="nn"&&l2=="n?")){
@@ -144,6 +147,9 @@ int AI::mark_giver(ChessNode ** chesses,int size,int x,int y){
     if(container[7]!=0){
         ans+=pow(10,container[3]);
     }
+    if(container[4]!=0){
+        ans+=pow(10,container[3]);
+    }
     return ans;
     //赋分
 }
@@ -182,7 +188,7 @@ int AI::Strategy_maker(ChessBoard board,int size){
 //    cout<<score_max<<endl;
     //随机返回encode过的最佳选择
     //(unsigned int)time(NULL)
-    srand(100);
+    srand((unsigned int)time(NULL));
     int a=rand()%num_of_max;
     int ans=score[a];
     cout<<num_of_max<<endl;
