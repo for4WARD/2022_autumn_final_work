@@ -91,6 +91,12 @@ build CMakeFiles/thefinal.dir/filedealer.cpp.obj: CXX_COMPILER__thefinal_Debug F
   OBJECT_DIR = CMakeFiles\thefinal.dir
   OBJECT_FILE_DIR = CMakeFiles\thefinal.dir
 
+build CMakeFiles/thefinal.dir/AI.cpp.obj: CXX_COMPILER__thefinal_Debug F$:/cpp_project/thefinal/AI.cpp || cmake_object_order_depends_target_thefinal
+  DEP_FILE = CMakeFiles\thefinal.dir\AI.cpp.obj.d
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles\thefinal.dir
+  OBJECT_FILE_DIR = CMakeFiles\thefinal.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target thefinal
@@ -99,7 +105,7 @@ build CMakeFiles/thefinal.dir/filedealer.cpp.obj: CXX_COMPILER__thefinal_Debug F
 #############################################
 # Link the executable thefinal.exe
 
-build thefinal.exe: CXX_EXECUTABLE_LINKER__thefinal_Debug CMakeFiles/thefinal.dir/main.cpp.obj CMakeFiles/thefinal.dir/checkboard.cpp.obj CMakeFiles/thefinal.dir/win_checker.cpp.obj CMakeFiles/thefinal.dir/easyxfunctions.cpp.obj CMakeFiles/thefinal.dir/pages.cpp.obj CMakeFiles/thefinal.dir/xytranslator.cpp.obj CMakeFiles/thefinal.dir/filedealer.cpp.obj
+build thefinal.exe: CXX_EXECUTABLE_LINKER__thefinal_Debug CMakeFiles/thefinal.dir/main.cpp.obj CMakeFiles/thefinal.dir/checkboard.cpp.obj CMakeFiles/thefinal.dir/win_checker.cpp.obj CMakeFiles/thefinal.dir/easyxfunctions.cpp.obj CMakeFiles/thefinal.dir/pages.cpp.obj CMakeFiles/thefinal.dir/xytranslator.cpp.obj CMakeFiles/thefinal.dir/filedealer.cpp.obj CMakeFiles/thefinal.dir/AI.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -Wl,-Bstatic  -lwinmm  -leasyx  -Wl,-Bdynamic  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\thefinal.dir

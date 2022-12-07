@@ -41,11 +41,15 @@ public:
     void setPlayerId(int playerId) {
         player_id = playerId;
     }
+    void setmark(int x){
+        mark=x;
+    }
 
 private:
     int location_x;
     int location_y;
     int player_id;
+    int mark;
 };
 
 
