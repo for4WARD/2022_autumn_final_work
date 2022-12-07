@@ -14,6 +14,7 @@ class pages {
 public:
     void page1();
     void pageboard();
+    void pageboardeve();
     void page_switch();
     void page_review();
 };

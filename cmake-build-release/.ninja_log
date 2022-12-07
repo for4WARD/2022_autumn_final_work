@@ -1,0 +1,23 @@
+# ninja log v5
+5	448	6921209878573811	CMakeFiles/thefinal.dir/xytranslator.cpp.obj	1f50487ec0af3cc4
+0	450	6921209878583848	CMakeFiles/thefinal.dir/checkboard.cpp.obj	61b84e9bb4b7c84c
+7	640	6921209880488825	CMakeFiles/thefinal.dir/win_checker.cpp.obj	32ca367625c4be27
+15	1401	6921209888128847	CMakeFiles/thefinal.dir/filedealer.cpp.obj	b8383d102b7a4ca4
+11	1538	6921209889492418	CMakeFiles/thefinal.dir/pages.cpp.obj	2ad2b0c92b088049
+9	1545	6921209889562609	CMakeFiles/thefinal.dir/easyxfunctions.cpp.obj	580631355cc075b0
+13	1746	6921209891577875	CMakeFiles/thefinal.dir/AI.cpp.obj	740ffe7b1898a6c8
+3	2016	6921209894284975	CMakeFiles/thefinal.dir/main.cpp.obj	c3bd1cdf4b677488
+2016	2417	6921209898039803	thefinal.exe	35f6ae81ee7b861b
+5	1368	6921231662983224	CMakeFiles/thefinal.dir/AI.cpp.obj	740ffe7b1898a6c8
+2	1707	6921231666392155	CMakeFiles/thefinal.dir/main.cpp.obj	c3bd1cdf4b677488
+1707	2131	6921231670587621	thefinal.exe	35f6ae81ee7b861b
+3	1463	6921234095696880	CMakeFiles/thefinal.dir/main.cpp.obj	c3bd1cdf4b677488
+1463	1869	6921234099723596	thefinal.exe	35f6ae81ee7b861b
+91	4243	6921308329958566	CMakeFiles/thefinal.dir/pages.cpp.obj	2ad2b0c92b088049
+93	4248	6921308330008693	CMakeFiles/thefinal.dir/AI.cpp.obj	740ffe7b1898a6c8
+2	4248	6921308330008693	CMakeFiles/thefinal.dir/main.cpp.obj	c3bd1cdf4b677488
+4248	4919	6921308336670769	thefinal.exe	35f6ae81ee7b861b
+2	1482	6921308572344047	CMakeFiles/thefinal.dir/main.cpp.obj	c3bd1cdf4b677488
+1483	1886	6921308576344523	thefinal.exe	35f6ae81ee7b861b
+2	1386	6921308971311188	CMakeFiles/thefinal.dir/main.cpp.obj	c3bd1cdf4b677488
+1386	1763	6921308975040957	thefinal.exe	35f6ae81ee7b861b

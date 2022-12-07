@@ -12,11 +12,12 @@ using namespace std;
 #define PVPBAN 11
 #define PVPNON 12
 #define PVE 13
+#define EVE 14
 int main()
 {
     filedealer filedealer;
     easyxfunctions easyxfunctionmain;
-//    easyxfunctionmain.BGM();
+    easyxfunctionmain.BGM();
     initgraph(1000,1000,0);
     pages page_page;
     HWND hnd = GetHWnd();//获取窗口句柄
@@ -44,19 +45,23 @@ int main()
                 case WM_LBUTTONDOWN:
                     //pvp
                 {
-                    if (msg.x >= 600 && msg.x <= 900 && msg.y >= 600 && msg.y <= 700) {
+                    if (msg.x >= 600 && msg.x <= 900 && msg.y >= 500 && msg.y <= 600) {
 //                        FILE *fp= fopen("../memory/lastgame.out","w");
 //                        fclose(fp);
                         goto SWITCH;
                     }
                     //pve
-                    if (msg.x >= 600 && msg.x <= 900 && msg.y >= 800 && msg.y <= 900) {
+                    if (msg.x >= 600 && msg.x <= 900 && msg.y >= 650 && msg.y <= 750) {
                         easyxfunctionmain.change1("zjx的五子棋",
                                                   "由于练习时长未到两年半，所以只做了无禁手的AI，祝您玩得愉快", "提示");
                         mode=PVE;
 //                        FILE *fp= fopen("../memory/lastgame.out","w");
 //                        fclose(fp);
                         goto TAGBOARD;//棋盘
+                    }
+                    if(msg.x>=600&&msg.x<=900&&msg.y>=800&&msg.y<=900){
+                        mode=EVE;
+                        goto TAGEVE;
                     }
                     if (msg.x >= 100 && msg.x <= 300 && msg.y >= 900 && msg.y <= 1000) {
                         int flag = easyxfunctionmain.change2("zjx的五子棋", "是否退出游戏？", "提示");
@@ -71,8 +76,6 @@ int main()
                     }
                     break;
                 }
-                default:
-                    break;
             }
         }
     }
@@ -226,9 +229,9 @@ int main()
                 }
                 //这里列是x 行是y
                 chessBoard.PlaceNode(decision_x, decision_y, id);
-                filedealer.file_now_in(decision_y, decision_x, id);
-                filedealer.file_all_add(decision_y, decision_x, id);
-                cout<<"x:"<<decision_x<<"\ty:"<<decision_y<<endl;
+                filedealer.file_now_in(decision_x, decision_y, id);
+                filedealer.file_all_add(decision_x, decision_y, id);
+//                cout<<"x:"<<decision_x<<"\ty:"<<decision_y<<endl;
                 easyxfunctionmain.BlackPawn(25 + 41 * (decision_y - 1), 24 + 41 * (decision_x - 1));
                 id = WHITE;
             }
@@ -253,20 +256,20 @@ int main()
                     filedealer.file_now_in(in_x, in_y, id);
                     filedealer.file_all_add(in_x, in_y, id);
                     easyxfunctionmain.WhitePawn(25 + 41 * (in_x - 1), 24 + 41 * (in_y - 1));
-                    chessBoard.Display();
-                    cout<<"\n\n\n\n\n\n\n\n\n"<<endl;
+
+
                     id = BLACK;
                 }
                 else if(mx>=830&&mx<=1000&&my>=500&&my<=600){
-                    int repx=chessBoard.ShowRecentStep().getLocationX();
-                    int repy=chessBoard.ShowRecentStep().getLocationY();
+                    int repy=chessBoard.ShowRecentStep().getLocationX();
+                    int repx=chessBoard.ShowRecentStep().getLocationY();
                     easyxfunctionmain.BrownPawn(25+41*(repx-1),24+41*(repy-1));
                     chessBoard.RepentStep();
                     filedealer.file_add_rep();
                     filedealer.file_all_add(repx,repy,BROWN);
                     filedealer.file_now_in(repx,repy,BROWN);
-                    repx=chessBoard.ShowRecentStep().getLocationX();
-                    repy=chessBoard.ShowRecentStep().getLocationY();
+                    repy=chessBoard.ShowRecentStep().getLocationX();
+                    repx=chessBoard.ShowRecentStep().getLocationY();
                     easyxfunctionmain.BrownPawn(25+41*(repx-1),24+41*(repy-1));
                     chessBoard.RepentStep();
                     filedealer.file_add_rep();
@@ -278,7 +281,91 @@ int main()
 
         }
     }
-REVIEW:
+    TAGEVE:
+    page_page.pageboardeve();
+    chessBoard.Reinitialize();
+    id=BLACK;
+    while(true){
+        Sleep(10);
+        if(peekmessage(&msg,EM_MOUSE)){
+            if(id==BLACK){
+                easyxfunctionmain.picture_loader(830,300,160,100,"../materials/Snipaste_2022-12-02_16-46-18.png");
+            }
+            else{
+                easyxfunctionmain.picture_loader(830,300,160,100,"../materials/Snipaste_2022-12-02_16-46-57.png");
+            }
+            if (msg.message==WM_LBUTTONDOWN){
+                int mx=msg.x,my=msg.y;
+                if (mx >= 830 && mx <= 1000 && my >= 700 && my <= 800) {
+                    int temp = easyxfunctionmain.change2("zjx的五子棋", "是否返回主页并重开？", "提示");
+                    if (temp == 1) {
+                        msg.x=0,msg.y=0;
+                        filedealer.file_add_line();
+                        goto TAG1;
+                    } else {
+                        msg.x=0,msg.y=0;
+                        continue;
+                    }
+                }
+                else if(mx>=830&&mx<=1000&&my>=500&&my<=600){
+                    if (algorithm.Judeger(chessBoard, size, mode) == BLACK) {
+                        filedealer.file_add_line();
+                        int temp = easyxfunctionmain.change2("zjx的五子棋", "黑棋胜利!是否复盘？", "提示");
+                        if (temp == 0) {
+                            goto TAG1;
+                        }
+                        else {
+                            goto REVIEW;
+                        }
+                        }
+                        if (algorithm.Judeger(chessBoard, size, mode) == WHITE) {
+                            filedealer.file_add_line();
+                            int temp = easyxfunctionmain.change2("zjx的五子棋", "白棋胜利!是否复盘？", "提示");
+                            if (temp == 0) {
+                                goto TAG1;
+                            }
+                            else {
+                                goto REVIEW;
+                            }
+                        }
+
+                    if(id==BLACK){
+                        int decision=ai.Strategy_maker(chessBoard,size);
+                        int decision_x=ai.x_analyse(decision);
+                        int decision_y=ai.y_analyse(decision);
+                        if(turn==0){
+                            decision_x=10;
+                            decision_y=10;
+                            turn++;
+                        }
+                        //这里列是x 行是y
+                        chessBoard.PlaceNode(decision_x, decision_y, id);
+                        filedealer.file_now_in(decision_x, decision_y, id);
+                        filedealer.file_all_add(decision_x, decision_y, id);
+                        easyxfunctionmain.BlackPawn(25 + 41 * (decision_y - 1), 24 + 41 * (decision_x - 1));
+                        id = WHITE;
+                    }
+                    else{
+                        int decision=ai.Strategy_maker_white(chessBoard,size);
+                        int decision_x=ai.x_analyse(decision);
+                        int decision_y=ai.y_analyse(decision);
+
+                        //这里列是x 行是y
+                        chessBoard.PlaceNode(decision_x, decision_y, id);
+                        filedealer.file_now_in(decision_x, decision_y, id);
+                        filedealer.file_all_add(decision_x, decision_y, id);
+                        easyxfunctionmain.WhitePawn(25 + 41 * (decision_y - 1), 24 + 41 * (decision_x - 1));
+                        id = BLACK;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+    REVIEW:
     page_page.page_review();
     Sleep(1000);
     int helpx=0,helpy=0,helpid=0,helpcheck=0;
