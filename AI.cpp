@@ -109,7 +109,7 @@ int AI::mark_giver(ChessNode ** chesses,int size,int x,int y){
         }
         if((l3=="nn?"&&r1=="?")||(l2=="n?"&&r2=="n?")||(l1=="?"&&r3=="nn?"))
         {
-            cout<<"check2:"<<x<<"\t"<<y<<endl;
+//            cout<<"check2:"<<x<<"\t"<<y<<endl;
             container[6]+=1;//6: 防止形成活三
         }
         if((l2=="n?"&&r1=="?")||(l1=="?"&&r2=="n?"))
@@ -264,7 +264,7 @@ int AI::Strategy_maker_white(ChessBoard board,int size){
     for(int i=1;i<=size;i++){
         for (int j = 1; j <=size; ++j) {
             if (chesses[i][j].getPlayerId()!=WHITE&&chesses[i][j].getPlayerId()!=BLACK) {
-                int now = ai.mark_giver(chesses, size, i, j);
+                int now = ai.mark_giver_white(chesses, size, i, j);
 //                cout << now << endl;
                 if (score_max > now)continue;
                 else if (score_max == now) {
