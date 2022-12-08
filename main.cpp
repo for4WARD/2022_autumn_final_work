@@ -146,17 +146,17 @@ int main()
                 {
                     int in_x=locationtranslator.translator(mx);
                     int in_y=locationtranslator.translator(my);
-                    chessBoard.PlaceNode(in_x,in_y,id);
-                    filedealer.file_now_in(in_x,in_y,id);
-                    filedealer.file_all_add(in_x,in_y,id);
-                    if (id == BLACK) {
-                        easyxfunctionmain.BlackPawn(25 + 41 * (in_x - 1), 24 + 41 * (in_y - 1));
-                        id = WHITE;
-                    }
-                    else {
-                        easyxfunctionmain.WhitePawn(25 + 41 * (in_x - 1), 24 + 41 * (in_y - 1));
-                        id = BLACK;
-                    }
+                    if (chessBoard.ShowBoard()[in_x][in_y].getPlayerId()==-1) {
+                        chessBoard.PlaceNode(in_x, in_y, id);
+                        filedealer.file_now_in(in_x, in_y, id);
+                        filedealer.file_all_add(in_x, in_y, id);
+                        if (id == BLACK) {
+                            easyxfunctionmain.BlackPawn(25 + 41 * (in_x - 1), 24 + 41 * (in_y - 1));
+                            id = WHITE;
+                        } else {
+                            easyxfunctionmain.WhitePawn(25 + 41 * (in_x - 1), 24 + 41 * (in_y - 1));
+                            id = BLACK;
+                        }
                         //                    cout<<algorithm.Judeger(chessBoard,size)<<endl;
                         //        int temp=chessBoard.ShowBoard()[chessBoard.ShowRecentStep().getLocationX()][chessBoard.ShowRecentStep().getLocationY()].getPlayerId();
                         //        cout<<"id:"<<temp<<"\t"<<"x:"<<chessBoard.ShowRecentStep().getLocationX()<<"\t"<<"y:"<<chessBoard.ShowRecentStep().getLocationY()<<endl;
@@ -168,8 +168,7 @@ int main()
                             int temp = easyxfunctionmain.change2("zjx的五子棋", "黑棋胜利!是否复盘？", "提示");
                             if (temp == 0) {
                                 goto TAG1;
-                            }
-                            else {
+                            } else {
                                 goto REVIEW;
                             }
                         }
@@ -178,11 +177,14 @@ int main()
                             int temp = easyxfunctionmain.change2("zjx的五子棋", "白棋胜利!是否复盘？", "提示");
                             if (temp == 0) {
                                 goto TAG1;
-                            }
-                            else {
+                            } else {
                                 goto REVIEW;
                             }
                         }
+                    }
+                    else{
+                        continue;
+                    }
                 }
                 else if(mx>=830&&mx<=1000&&my>=500&&my<=600){
                     int repx=chessBoard.ShowRecentStep().getLocationX();
@@ -229,8 +231,8 @@ int main()
                 }
                 //这里列是x 行是y
                 chessBoard.PlaceNode(decision_x, decision_y, id);
-                filedealer.file_now_in(decision_x, decision_y, id);
-                filedealer.file_all_add(decision_x, decision_y, id);
+                filedealer.file_now_in(decision_y, decision_x, id);
+                filedealer.file_all_add(decision_y, decision_x, id);
 //                cout<<"x:"<<decision_x<<"\ty:"<<decision_y<<endl;
                 easyxfunctionmain.BlackPawn(25 + 41 * (decision_y - 1), 24 + 41 * (decision_x - 1));
                 id = WHITE;
@@ -252,13 +254,18 @@ int main()
                 else if(mx >= 0 && mx <= 800 && my >= 0 && my <= 800) {
                     int in_x = locationtranslator.translator(mx);
                     int in_y = locationtranslator.translator(my);
-                    chessBoard.PlaceNode(in_y, in_x, id);
-                    filedealer.file_now_in(in_x, in_y, id);
-                    filedealer.file_all_add(in_x, in_y, id);
-                    easyxfunctionmain.WhitePawn(25 + 41 * (in_x - 1), 24 + 41 * (in_y - 1));
+                    if (chessBoard.ShowBoard()[in_x][in_y].getPlayerId()==-1) {
+                        chessBoard.PlaceNode(in_y, in_x, id);
+                        filedealer.file_now_in(in_x, in_y, id);
+                        filedealer.file_all_add(in_x, in_y, id);
+                        easyxfunctionmain.WhitePawn(25 + 41 * (in_x - 1), 24 + 41 * (in_y - 1));
 
 
-                    id = BLACK;
+                        id = BLACK;
+                    }
+                    else{
+                        continue;
+                    }
                 }
                 else if(mx>=830&&mx<=1000&&my>=500&&my<=600){
                     int repy=chessBoard.ShowRecentStep().getLocationX();

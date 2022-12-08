@@ -61,3 +61,7 @@
    4. EVE?黑白分开基本抄一遍之前做的就行了。
    
    
+
+# github仓库
+
+[for4WARD/2022_autumn_final_work: 计导五子棋小游戏 (github.com)](https://github.com/for4WARD/2022_autumn_final_work)
